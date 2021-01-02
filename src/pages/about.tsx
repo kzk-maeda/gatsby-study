@@ -1,11 +1,11 @@
+import { graphql, PageProps } from "gatsby"
 import React from "react"
-import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 
-export default function About({ data }) {
+const About:React.FC<PageProps<GatsbyTypes.SiteTitleQuery>> = ({ data }) => {
   return (
     <Layout>
-      <h1>About {data.site.siteMetadata.title}</h1>
+      <h1>About {data.site!.siteMetadata!.title}</h1>
       <p>
         We're the only site running on your computer dedicated to showing the
         best photos and videos of pandas eating lots of food.
@@ -14,12 +14,14 @@ export default function About({ data }) {
   )
 }
 
+export default About
+
 export const query = graphql`
-    query {
-        site {
-            siteMetadata {
-                title
-            }
+query SiteTitle {
+    site {
+        siteMetadata {
+            title
         }
     }
+}
 `
